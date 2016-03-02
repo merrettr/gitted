@@ -1,5 +1,7 @@
 'use strict';
 
+import Search from 'client/components/search';
+
 const {
   Navbar,
   Nav,
@@ -33,6 +35,9 @@ export default () => {
       </Nav>
       <Nav pullRight>
         <NavItem eventKey={1} href="#">Login</NavItem>
+      </Nav>
+      <Nav pullRight style={{margin: 0, padding: 0, marginTop: '.6em'}}>
+        <Search />
       </Nav>
     </Navbar.Collapse>
   </Navbar>;

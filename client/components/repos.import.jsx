@@ -36,8 +36,12 @@ export default React.createClass({
   },
 
   render() {
-    return <ListGroup>
-      {this.data.repos.map(this.renderRepo)}
-    </ListGroup>;
+    return (
+      <div>
+        <ListGroup>
+          {this.data.repos.map(this.renderRepo)}
+        </ListGroup>
+      </div>
+    );
   }
 });

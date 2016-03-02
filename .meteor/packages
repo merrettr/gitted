@@ -28,3 +28,5 @@ cosmos:browserify
 
 npm-container
 dburles:collection-helpers
+mquandalle:bower
+keiths:octicons
