@@ -14,4 +14,4 @@ if(Repos.find({}).fetch().length === 0) {
     });
 }
 
-Meteor.publish('repos', () => Repos.find());
+Meteor.publish('Repos', () => Repos.find());

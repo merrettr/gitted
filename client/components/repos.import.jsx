@@ -1,6 +1,6 @@
 'use strict';
 
-import Repo from 'client/components/repo';
+import Item from 'client/components/item';
 
 const {
   ListGroup,
@@ -11,12 +11,12 @@ export default React.createClass({
   mixins: [ReactMeteorData],
 
   getMeteorData() {
-    Meteor.subscribe('repos');
+    Meteor.subscribe('Repos');
 
     return {repos: Repos.find({}).fetch()};
   },
 
-  onRepoClicked(repo) {
+  onItemClicked(repo) {
     console.log(repo);
   },
 
@@ -26,8 +26,8 @@ export default React.createClass({
         className="card"
         key={repo._id}
         style={{marginBottom: '.5em'}}
-        onClick={this.onRepoClicked}>
-        <Repo
+        onClick={this.onItemClicked}>
+        <Item
           key={repo._id}
           repo={repo}
         />

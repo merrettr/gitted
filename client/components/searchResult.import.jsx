@@ -2,9 +2,7 @@
 
 const {
   Grid,
-  Row,
-  Col,
-  Glyphicon
+  Row
 } = ReactBootstrap;
 
 export default class extends React.Component {
@@ -23,16 +21,9 @@ export default class extends React.Component {
           </Row>
 
           <Row>
-            <span style={{fontSize: '1.3em'}}>{this.props.result.name}</span>
+            <span style={{fontSize: '1.2em'}}>{this.props.result.name}</span>
           </Row>
       </Grid>
     );
   }
 }
-
-const styles = {
-  centerColumn: {
-    display: 'flex',
-    alignItems: 'center'
-  }
-};

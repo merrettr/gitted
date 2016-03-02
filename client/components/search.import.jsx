@@ -6,7 +6,8 @@ import SearchResult from 'client/components/searchResult';
 const {
   Input,
   ListGroup,
-  ListGroupItem
+  ListGroupItem,
+  ProgressBar
 } = ReactBootstrap;
 
 export default React.createClass({
@@ -44,8 +45,7 @@ export default React.createClass({
   render() {
     return (
       <div
-        style={this.props.style}
-        onBlur={() => {console.log('blur')}}>
+        style={this.props.style}>
         <Input
           type="text"
           placeholder="Search"
@@ -55,22 +55,22 @@ export default React.createClass({
           value={this.state.search}
         />
 
+        {
+          this.state.isLoading
+            ? <ProgressBar active now={100}
+                 style={{position: 'absolute', zIndex: 1000, width: '13em', backgroundColor: '#fff'}}/>
+            : ''
+        }
+
         <div
           className="card"
-          style={{position: 'absolute', zIndex: 1000, width: '13em'}}
-          onBlur={() => {console.log('blurring'); this.setState({results: null});}}>
-          {
-            this.state.isLoading
-              ? <div className="card"><span>Loading</span></div>
-              : ''
-          }
-
+          style={{position: 'absolute', zIndex: 1000, width: '13em', backgroundColor: '#fff'}}>
           {
             !this.state.isLoading && this.state.results.length > 0
             ? <ListGroup
-              style={{height: '15em', overflow: 'hidden', overflowY: 'scroll', marginBottom: 0}}>
-              {this.state.results.map(this.renderResult)}
-            </ListGroup>
+                style={{height: '15em', overflow: 'hidden', overflowY: 'scroll', marginBottom: 0}}>
+                {this.state.results.map(this.renderResult)}
+              </ListGroup>
             : ''
           }
         </div>
