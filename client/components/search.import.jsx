@@ -10,6 +10,10 @@ const {
   ProgressBar
 } = ReactBootstrap;
 
+const {
+  LinkContainer
+} = ReactRouterBootstrap;
+
 export default React.createClass({
   getInitialState() {
     return {search: '', isLoading: false, results: []};
@@ -19,26 +23,35 @@ export default React.createClass({
     if(ev.charCode === 13) {
       this.setState({isLoading: true});
 
-      Meteor.call('search', this.state.search, (error, result) => {
-        this.setState({isLoading: false, results: result.items});
-      });
+      if(!!this.state.handle) {
+        this.state.handle.stop();
+      }
+
+      const handle = Meteor.subscribe('Search', this.state.search.trim(), {
+        onReady(results) {
+          console.log('done');
+          this.setState({
+            isLoading: false,
+            results: results
+          });
+      }});
+
+      this.setState({handle: handle});
     }
   },
 
-  onResultClicked(result) {
-    console.log(result);
-  },
-
   renderResult(result) {
+    console.log('rendering', result);
     return (
-      <ListGroupItem
-        className="card"
-        key={result.id}
-        onClick={this.onResultClicked}>
-        <SearchResult
-          key={result.id}
-          result={result}/>
-      </ListGroupItem>
+      <LinkContainer to={{pathname: `/repos/${result._id}`}}>
+        <ListGroupItem
+          className="card"
+          key={result._id}>
+          <SearchResult
+            key={result._id}
+            result={result}/>
+        </ListGroupItem>
+      </LinkContainer>
     )
   },
 

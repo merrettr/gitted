@@ -10,9 +10,24 @@ class Github {
   }
 
   search(query, callback) {
+    console.log('here');
+    callback(null, []);
     this.client.search().repos({
       q: query
-    }, callback);
+    }, Meteor.bindEnvironment((error, results) => {
+      (results.items || []).forEach(result => {
+        Owners.insert(result.owner, (error, id) => {
+          result.ownerId = id;
+          result.vendor = 'github';
+
+          Repos.insert(result, (error, id) => {
+            result._id = id;
+          });
+        });
+      });
+
+      callback(null, results.items);
+    }));
   }
 }
 

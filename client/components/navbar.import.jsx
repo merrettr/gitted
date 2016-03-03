@@ -19,7 +19,7 @@ export default () => {
     <Navbar.Header>
       <LinkContainer to={{pathname: '/'}}>
         <Navbar.Brand>
-          <a href="/">Gitted</a>
+          <a href="/#">Gitted</a>
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle />

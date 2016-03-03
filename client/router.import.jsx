@@ -10,9 +10,8 @@ Meteor.startup(() => {
   ReactDOM.render((
     <Router history={hashHistory}>
       <Route path="/" component={App}>
-        <Route path="/repos" component={Repos}>
-          <Route path="/repo/:repoId" />
-        </Route>
+        <Route path="repos" component={Repos}/>
+        <Route path="repos/:repoId" component={Repo}/>
       </Route>
     </Router>),
     document.getElementById('render-target')

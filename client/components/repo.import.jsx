@@ -6,6 +6,6 @@ const {
 
 export default class extends Component {
   render() {
-    return <div></div>
+    return <div>Hello</div>
   }
 }

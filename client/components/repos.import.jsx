@@ -7,6 +7,10 @@ const {
   ListGroupItem
 } = ReactBootstrap;
 
+const {
+  LinkContainer
+} = ReactRouterBootstrap;
+
 export default React.createClass({
   mixins: [ReactMeteorData],
 
@@ -16,22 +20,22 @@ export default React.createClass({
     return {repos: Repos.find({}).fetch()};
   },
 
-  onItemClicked(repo) {
-    console.log(repo);
-  },
-
   renderRepo(repo) {
     return (
-      <ListGroupItem
-        className="card"
+      <LinkContainer
         key={repo._id}
-        style={{marginBottom: '.5em'}}
-        onClick={this.onItemClicked}>
-        <Item
-          key={repo._id}
-          repo={repo}
-        />
-      </ListGroupItem>
+        to={{pathname: `/repos/${repo._id}`}}>
+        <div>
+
+          <ListGroupItem
+            className="card"
+            style={{marginBottom: '.5em'}}
+            onClick={() => {}}>
+              <Item repo={repo} />
+          </ListGroupItem>
+
+        </div>
+      </LinkContainer>
     );
   },
 

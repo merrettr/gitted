@@ -1,17 +1,18 @@
-if(Repos.find({}).fetch().length === 0) {
-  Repos.insert(
-    {
-      vendor: 'github',
-      url: 'https://github.com/facebook/flow',
-      name: 'flow',
-      owner: 'facebook'
-    });
-  Repos.insert({
-      vendor: 'github',
-      url: 'https://github.com/emberjs/ember.js/',
-      name: 'ember.js',
-      owner: 'emberjs'
-    });
-}
+'use strict';
 
+// all repos
 Meteor.publish('Repos', () => Repos.find());
+
+// search repos
+Meteor.publish('Search', (query) => {
+  function test(callback) {
+    setTimeout(() => {
+     console.log('here');
+     callback(null, []);
+     }, 3000);
+  }
+
+  const x = Meteor.wrapAsync(test)();
+  console.log(x);
+  return x;
+});
