@@ -12,7 +12,8 @@ Meteor.publish('Search', (query) => {
      }, 3000);
   }
 
-  const x = Meteor.wrapAsync(test)();
-  console.log(x);
-  return x;
+  //const x = Meteor.wrapAsync(test)();
+  //console.log(x);
+  //return x;
+  throw new Error({error: 'message'});
 });

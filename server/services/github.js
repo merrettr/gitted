@@ -10,8 +10,6 @@ class Github {
   }
 
   search(query, callback) {
-    console.log('here');
-    callback(null, []);
     this.client.search().repos({
       q: query
     }, Meteor.bindEnvironment((error, results) => {

@@ -28,13 +28,27 @@ export default React.createClass({
       }
 
       const handle = Meteor.subscribe('Search', this.state.search.trim(), {
-        onReady(results) {
+        onReady: (results) => {
           console.log('done');
           this.setState({
             isLoading: false,
             results: results
           });
+        },
+        onError: () => {
+          this.setState({
+            isLoading: false,
+            results: []
+          });
+          console.log('error');
       }});
+      /*const handle = Meteor.subscribe('Search', this.state.search.trim(), (error, results) => {
+        console.log(error, results);
+        this.setState({
+          isLoading: false,
+          results: []
+        });
+      });*/
 
       this.setState({handle: handle});
     }
